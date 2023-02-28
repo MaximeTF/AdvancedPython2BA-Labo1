@@ -1,3 +1,5 @@
+import math
+
 def fact(n):
 	"""Computes the factorial of a natural number.
 	
@@ -5,6 +7,15 @@ def fact(n):
 	Post: Returns the factorial of 'n'.
 	Throws: ValueError if n < 0
 	"""
+	if (n>0):
+		fact=1
+		for i in range(1,n+1):
+			fact=fact*i
+		return fact
+	else:
+		raise ValueError("n must be positive")
+			
+	
 	pass
 
 def roots(a, b, c):
@@ -14,6 +25,13 @@ def roots(a, b, c):
 	Post: Returns a tuple with zero, one or two elements corresponding
 		to the roots of the ax^2 + bx + c polynomial.
 	"""
+	delta=b**2-4*a*c
+	if (delta==0):
+		return (-b/2/a)
+	if delta<0:
+		return tuple()
+	SqRtdelta= math.sqrt(delta)
+	return((b-SqRtdelta)/2/a,(b+SqRtdelta)/2/a)
 	pass
 
 def integrate(function, lower, upper):
