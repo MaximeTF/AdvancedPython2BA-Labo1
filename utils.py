@@ -1,4 +1,5 @@
 import math
+from scipy import integrate as itg 
 
 def fact(n):
 	"""Computes the factorial of a natural number.
@@ -7,7 +8,7 @@ def fact(n):
 	Post: Returns the factorial of 'n'.
 	Throws: ValueError if n < 0
 	"""
-	if (n>0):
+	if (n>=0):
 		fact=1
 		for i in range(1,n+1):
 			fact=fact*i
@@ -31,7 +32,7 @@ def roots(a, b, c):
 	if delta<0:
 		return tuple()
 	SqRtdelta= math.sqrt(delta)
-	return((b-SqRtdelta)/2/a,(b+SqRtdelta)/2/a)
+	return((-b-SqRtdelta)/2/a,(-b+SqRtdelta)/2/a)
 	pass
 
 def integrate(function, lower, upper):
@@ -47,9 +48,11 @@ def integrate(function, lower, upper):
 		you'll probably need the 'eval' function to evaluate the function
 		to integrate given as a string.
 	"""
+	return itg.quad(lambda x: eval(function, {'x':x}),lower,upper)[0]
+
 	pass
 
 if __name__ == '__main__':
 	print(fact(5))
-	print(roots(1, 0, 1))
+	print(roots(1, 5, 4))
 	print(integrate('x ** 2 - 1', -1, 1))
